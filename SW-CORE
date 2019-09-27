@@ -1,0 +1,61 @@
+enable
+configure terminal
+hostname SW-CORE11
+banner motd "CONTINUE SE FOR AUTORIZADO"
+enable secret SenhadaEnable
+line console 0 
+password SenhadaConsole
+login
+exit
+username PedroLucca privilege 15 secret SenhaLucca
+ip domain-name rede1.local
+crypto key generate rsa general-keys modulus 1024
+service password-encryption
+line vty 0 15
+transport input ssh
+exec-timeout 5
+login local
+exit
+vlan 10
+name VLAN10
+vlan 20
+name VLAN20
+vlan 100
+name VLAN100
+interface gigabitethernet 1/1
+switchport mode trunk
+switchport trunk native vlan 99
+interface gigabitethernet 0/1
+switchport mode trunk
+switchport trunk allowed vlan 10
+switchport trunk allowed vlan 20
+switchport trunk allowed vlan 100
+switchport trunk allowed vlan 99
+interface gigabitethernet 2/1
+switchport mode trunk
+switchport trunk native vlan 99
+interface gigabitethernet 0/1
+switchport mode trunk
+switchport trunk allowed vlan 10
+switchport trunk allowed vlan 20
+switchport trunk allowed vlan 100
+switchport trunk allowed vlan 99
+interface gigabitethernet 3/1
+switchport mode access
+switchport access vlan 100
+interface gigabitethernet 0/1
+switchport mode trunk
+switchport trunk native vlan 99
+interface gigabitethernet 0/1
+switchport mode trunk
+switchport trunk allowed vlan 10
+switchport trunk allowed vlan 20
+switchport trunk allowed vlan 100
+switchport trunk allowed vlan 99
+exit
+interface vlan 1
+ip address 172.16.2.142 255.255.255.240
+no shutdown
+ip default-gateway 172.16.2.129
+do wr
+
