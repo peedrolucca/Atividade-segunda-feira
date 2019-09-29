@@ -25,7 +25,7 @@ name VLAN100
 interface gigabitethernet 1/1
 switchport mode trunk
 switchport trunk native vlan 99
-interface gigabitethernet 0/1
+interface gigabitethernet 1/1
 switchport mode trunk
 switchport trunk allowed vlan 10
 switchport trunk allowed vlan 20
@@ -34,7 +34,7 @@ switchport trunk allowed vlan 99
 interface gigabitethernet 2/1
 switchport mode trunk
 switchport trunk native vlan 99
-interface gigabitethernet 0/1
+interface gigabitethernet 2/1
 switchport mode trunk
 switchport trunk allowed vlan 10
 switchport trunk allowed vlan 20
